@@ -11,6 +11,7 @@ Module.register("MMM-WiFiPassword", {
 	  showNetwork: true, // Display network name
 	  showPassword: true, // Display password
 	  showAuthType: true, // Dispay authentication type
+          float: "left",  // Float this module left or right in the same region
 	  debug: false
   },
   
@@ -96,6 +97,20 @@ Module.register("MMM-WiFiPassword", {
 		debugDiv.innerHTML = "<b>QR String:</b> " + this.qrText;
 		textDiv.appendChild(debugDiv);
 	  }
+
+          // Code added to float the display left or right within the same region
+          if (this.config.float!== ""){
+                  // get the MM div container for this module (parent of our wrapper div)
+                  document.getElementById(this.identifier).style.float=this.config.float;
+                  // adjust the border between instances
+                  if(this.config.spacing !==""){
+                          if(this.config.float === "left")
+                                  document.getElementById(this.identifier).style.marginLeft=this.config.spacing
+                          else
+                          if(this.config.float === "right")
+                                  document.getElementById(this.identifier).style.marginRight=this.config.spacing
+                  }
+          }
 	  	  
 	  return div;
   },
